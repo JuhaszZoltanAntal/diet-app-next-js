@@ -1,10 +1,12 @@
 import { model, Schema, models } from 'mongoose';
+import { IDiet } from './dietModel';
 
 export interface IUser {
   id: string;
   name: string;
   email: string;
   password: string;
+  diet?: IDiet[];
 }
 
 const userSchema = new Schema<IUser>({
@@ -12,6 +14,7 @@ const userSchema = new Schema<IUser>({
   name: { type: String, required: true },
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
+  diet: { type: Schema.Types.Mixed },
 });
 
 const User = models.User || model<IUser>('User', userSchema);
