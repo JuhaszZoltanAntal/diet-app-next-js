@@ -1,6 +1,5 @@
 import type { NextApiHandler } from 'next';
 import User, { IUser } from '@/mongo/models/userModel';
-import crypto from 'crypto';
 import { conncetMongo } from '@/mongo/connect';
 
 let handler: NextApiHandler<any> = async (req, res) => {
@@ -8,13 +7,12 @@ let handler: NextApiHandler<any> = async (req, res) => {
 
   if (req.method === 'POST') {
     const newUser = {
-      id: crypto.randomUUID().toString(),
+      id: req.body.id,
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
     };
 
-    const userAlreadyExists = await User.findOne({ email: newUser.email });
+    const userAlreadyExists = await User.findOne({ id: newUser.id });
 
     if (!userAlreadyExists) {
       const userDocument = new User({
@@ -25,10 +23,10 @@ let handler: NextApiHandler<any> = async (req, res) => {
 
       res.status(200).json({
         message: 'Success!',
-        newUser: { name: newUser.name, email: newUser.email },
+        newUser: { name: newUser.name, email: newUser.email, id: newUser.id },
       });
     } else {
-      res.status(500).send({ message: 'This email already occupied!' });
+      res.status(500).send({ message: 'No need to add user because its already exists in the database.' });
     }
   }
 };
