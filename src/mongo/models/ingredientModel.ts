@@ -1,6 +1,6 @@
 import { model, Schema, models } from 'mongoose';
 
-enum Unit {
+export enum Unit {
   g = 'g',
   dkg = 'dkg',
   kg = 'kg',
@@ -10,9 +10,9 @@ enum Unit {
   piece = 'piece',
 }
 
-enum CalorieUnit {
-  kcalg = 'kcal/g',
-  kcalml = 'kcal/ml',
+export enum CalorieUnit {
+  kcalg = 'kcal/100g',
+  kcalml = 'kcal/100ml',
   piece = 'piece',
 }
 
