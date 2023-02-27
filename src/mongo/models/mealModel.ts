@@ -1,7 +1,7 @@
 import { model, Schema, models } from 'mongoose';
 import { IIngredient } from './ingredientModel';
 
-enum MealTypes {
+export enum MealTypes {
   breakfest = 'breakfast',
   lunch = 'lunch',
   dinner = 'dinner',
