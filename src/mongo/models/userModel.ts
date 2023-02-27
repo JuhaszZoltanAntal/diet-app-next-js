@@ -5,7 +5,7 @@ export interface IUser {
   id: string;
   name: string;
   email: string;
-  password: string;
+  password?: string;
   diet?: IDiet[];
 }
 
@@ -13,7 +13,7 @@ const userSchema = new Schema<IUser>({
   id: { type: String, unique: true, required: true },
   name: { type: String, required: true },
   email: { type: String, unique: true, required: true },
-  password: { type: String, required: true },
+  password: { type: String },
   diet: { type: Schema.Types.Mixed },
 });
 

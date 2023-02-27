@@ -14,7 +14,7 @@ let handler: NextApiHandler<any> = async (req, res) => {
       password: req.body.password,
     };
 
-    const userAlreadyExists = await User.findOne({ email: newUser.id });
+    const userAlreadyExists = await User.findOne({ id: newUser.id });
 
     if (!userAlreadyExists) {
       const userDocument = new User({
