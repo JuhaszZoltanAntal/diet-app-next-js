@@ -1,9 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
-import { Session } from 'next-auth';
 
-export default function NavBar({ userName, session }: { userName: string; session: Session }) {
+export default function NavBar({ userName }: { userName: string }) {
   return (
     <div>
       <div>
@@ -30,7 +29,13 @@ export default function NavBar({ userName, session }: { userName: string; sessio
           <Link href='new-meals'>Add new meals</Link>
         </li>
         <li>
-          <Link href='shopping-list'>Shopping List</Link>
+          <Link href='ingredients'>Ingredients</Link>
+        </li>
+        <li>
+          <Link href='new-ingredients'>Add new ingredients</Link>
+        </li>
+        <li>
+          <Link href='shopping-list'>Shopping list</Link>
         </li>
       </ul>
     </div>
