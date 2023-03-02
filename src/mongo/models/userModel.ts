@@ -1,12 +1,16 @@
 import { model, Schema, models } from 'mongoose';
 import { IDiet } from './dietModel';
+import { IIngredient } from './ingredientModel';
+import { IMeal } from './mealModel';
 
 export interface IUser {
   id: string;
   name: string;
   email: string;
   password?: string;
-  diet?: IDiet[];
+  diets?: IDiet[];
+  meals?: IMeal[];
+  ingredients?: IIngredient[];
 }
 
 const userSchema = new Schema<IUser>({
@@ -14,7 +18,9 @@ const userSchema = new Schema<IUser>({
   name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String },
-  diet: { type: Schema.Types.Mixed },
+  diets: { type: Schema.Types.Mixed },
+  meals: { type: Schema.Types.Mixed },
+  ingredients: { type: Schema.Types.Mixed },
 });
 
 const User = models.User || model<IUser>('User', userSchema);

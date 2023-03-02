@@ -1,27 +1,21 @@
 import { model, Schema, models } from 'mongoose';
+import { MealTypes } from './enums';
 import { IIngredient } from './ingredientModel';
 
-export enum MealTypes {
-  breakfest = 'breakfast',
-  lunch = 'lunch',
-  dinner = 'dinner',
-  other = 'other',
-}
-
-export interface IMeals {
+export interface IMeal {
   name: string;
   calorie: number;
-  Mealtypes: MealTypes[];
+  mealtypes: MealTypes[];
   ingredients: IIngredient[];
 }
 
-const mealSchema = new Schema<IMeals>({
-  name: { type: String, required: true },
+const mealSchema = new Schema<IMeal>({
+  name: { type: String, required: true, unique: true },
   calorie: { type: Number, required: true },
-  Mealtypes: { type: Schema.Types.Mixed, required: true },
+  mealtypes: { type: Schema.Types.Mixed, required: true },
   ingredients: { type: Schema.Types.Mixed, required: true },
 });
 
-const Meal = models.Meal || model<IMeals>('Meal', mealSchema);
+const Meal = models.Meal || model<IMeal>('Meal', mealSchema);
 
 export default Meal;

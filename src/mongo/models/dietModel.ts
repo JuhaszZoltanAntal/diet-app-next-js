@@ -9,7 +9,7 @@ export interface IDiet {
 }
 
 const dietSchema = new Schema<IDiet>({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   expectedCaloriesPerDay: { type: Number, required: true },
   mealsPerDay: { type: Number, required: true },
   dailyMelasList: { type: Schema.Types.Mixed, required: true },
