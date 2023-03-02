@@ -1,7 +1,4 @@
-import { CalorieUnit, Unit } from './models/ingredientModel';
-import { MealTypes } from './models/mealModel';
-
-CalorieUnit;
+import { CalorieUnit, MealTypes, Unit } from './models/enums';
 
 const STARTING_DATA = {
   startingIngredients: [
