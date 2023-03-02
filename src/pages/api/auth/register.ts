@@ -24,7 +24,7 @@ let handler: NextApiHandler<any> = async (req, res) => {
       await userDocument.save();
 
       res.status(200).json({
-        message: 'Success!',
+        message: 'Account registered successfully. Go back to login page.',
         newUser: { name: newUser.name, email: newUser.email },
       });
     } else {
