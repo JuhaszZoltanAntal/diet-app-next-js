@@ -10,6 +10,7 @@ export default function RegisterForm() {
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const handleRegistration = (e: FormEvent) => {
     e.preventDefault();
@@ -38,6 +39,7 @@ export default function RegisterForm() {
       )
       .then(function (response) {
         console.log(response);
+        setSuccessMessage(response.data.message)
       })
       .catch(function (error) {
         console.log(error);
@@ -60,10 +62,11 @@ export default function RegisterForm() {
           <label htmlFor='password'>Your Password (minimum lenght 8 character)</label>
           <input ref={passwordRef} type='password' id='password' minLength={8} required />
         </div>
-        <button type='submit'>Submit</button>
+        <button type='submit'>Sign In</button>
       </div>
       {errorMessage && <p>{errorMessage}</p>}
-      <button onClick={() => router.push('/')}>Back to sign in</button>
+      {successMessage && <p>{successMessage}</p>}
+      <button onClick={() => router.push('/')}>Login page</button>
     </form>
   );
 }
