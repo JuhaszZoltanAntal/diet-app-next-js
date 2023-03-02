@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import UserContext from '@/store/user-context';
 
 export default function Meals() {
+  const {meals} = useContext(UserContext);
   return (
-    <div>Meals Page</div>
+    <ul>
+    {meals?.map((meal) => (
+      <li key={meal.name}>{meal.name}</li>
+    ))}
+  </ul>
   )
 }
