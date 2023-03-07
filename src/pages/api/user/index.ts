@@ -1,5 +1,5 @@
 import type { NextApiHandler } from 'next';
-import User, { IUser } from '@/mongo/models/userModel';
+import User from '@/mongo/models/userModel';
 import { conncetMongo } from '@/mongo/connect';
 
 let handler: NextApiHandler<any> = async (req, res) => {
@@ -26,7 +26,9 @@ let handler: NextApiHandler<any> = async (req, res) => {
         newUser: { name: newUser.name, email: newUser.email, id: newUser.id },
       });
     } else {
-      res.status(500).send({ message: 'No need to add user because its already exists in the database.' });
+      res
+        .status(500)
+        .send({ message: 'No need to add user because its already exists in the database.' });
     }
   }
 };
