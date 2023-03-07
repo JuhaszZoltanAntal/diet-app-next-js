@@ -1,6 +1,7 @@
 import type { NextApiHandler } from 'next';
 import { conncetMongo } from '@/mongo/connect';
 import User from '@/mongo/models/userModel';
+import Meals from '@/pages/meals';
 
 let handler: NextApiHandler<any> = async (req, res) => {
   await conncetMongo();
@@ -25,12 +26,25 @@ let handler: NextApiHandler<any> = async (req, res) => {
       res.status(500).send({ message: 'Somthing went wrong. (startingMeals missing)' });
     }
 
-    if (userId && startingIngredients && startingMeals) {
+    const isInitiated = await User.findOne({
+      id: userId,
+      meals: { $exists: true },
+      ingredients: { $exists: true },
+    });
+    console.log(isInitiated)
+
+    if (userId && startingIngredients && startingMeals && !isInitiated) {
       const filter = { id: userId };
-      const update = { meals: [...startingMeals], ingredients: [...startingIngredients] };
+      const update = {
+        $push: { meals: { $each: startingMeals }, ingredients: { $each: startingIngredients } },
+      };
       let doc = await User.findOneAndUpdate(filter, update);
       res.status(200).json({
         message: 'Success!',
+      });
+    } else {
+      res.status(500).json({
+        message: 'Already initiated!',
       });
     }
   }
