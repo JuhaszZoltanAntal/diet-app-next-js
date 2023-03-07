@@ -1,34 +1,34 @@
-import { CalorieUnit, MealTypes, Unit } from './models/enums';
+import { CalorieUnit, MealType, Unit } from './models/enums';
 
 const STARTING_DATA = {
   startingIngredients: [
-    { name: 'Tyúktojás (M)', calorie: 76, calorieUnit: CalorieUnit.piece },
-    { name: 'Burgonya', calorie: 77, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Basmati rizs (száraz)', calorie: 360, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Csirkemell', calorie: 120, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Sertéskaraj (hosszú karaj)', calorie: 155, calorieUnit: CalorieUnit.kcalg },
-    { name: 'SPAR UHT tej 2,8%-os', calorie: 56, calorieUnit: CalorieUnit.kcalml },
-    { name: 'Durumtészta (száraz)', calorie: 360, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Olívaolaj', calorie: 813, calorieUnit: CalorieUnit.kcalml },
-    { name: 'Paradicsom (közepes)', calorie: 22, calorieUnit: CalorieUnit.piece },
-    { name: 'Alma (150g)', calorie: 78, calorieUnit: CalorieUnit.piece },
-    { name: 'Körte (közepes)', calorie: 101, calorieUnit: CalorieUnit.piece },
-    { name: 'Joghurt', calorie: 57, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Lilahagyma (közepes)', calorie: 46, calorieUnit: CalorieUnit.piece },
-    { name: 'Vaj', calorie: 742, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Trappista sajt', calorie: 352, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Sertéssonka', calorie: 147, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Teljeskiörlésű kenyér szelet (32g)', calorie: 80, calorieUnit: CalorieUnit.piece },
-    { name: 'Só', calorie: 0, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Bors (fűszer)', calorie: 251, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Piros paprika (fűszer)', calorie: 282, calorieUnit: CalorieUnit.kcalg },
-    { name: 'Víz', calorie: 0, calorieUnit: CalorieUnit.kcalml },
+    { name: 'Tyúktojás (M)', calorie: 76, calorieUnit: CalorieUnit.piece, unit: Unit.piece },
+    { name: 'Burgonya', calorie: 77, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    { name: 'Basmati rizs (száraz)', calorie: 360, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    { name: 'Csirkemell', calorie: 120, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    { name: 'Sertéskaraj (hosszú karaj)', calorie: 155, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    { name: 'SPAR UHT tej 2,8%-os', calorie: 56, calorieUnit: CalorieUnit.kcalml, unit: Unit.ml },
+    { name: 'Durumtészta (száraz)', calorie: 360, calorieUnit: CalorieUnit.kcalg , unit: Unit.g},
+    { name: 'Olívaolaj', calorie: 813, calorieUnit: CalorieUnit.kcalml, unit: Unit.ml },
+    { name: 'Paradicsom (közepes)', calorie: 22, calorieUnit: CalorieUnit.piece, unit: Unit.piece },
+    { name: 'Alma (150g)', calorie: 78, calorieUnit: CalorieUnit.piece, unit: Unit.piece },
+    { name: 'Körte (közepes)', calorie: 101, calorieUnit: CalorieUnit.piece, unit: Unit.piece },
+    { name: 'Joghurt', calorie: 57, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    { name: 'Lilahagyma (közepes)', calorie: 46, calorieUnit: CalorieUnit.piece, unit: Unit.piece },
+    { name: 'Vaj', calorie: 742, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    { name: 'Trappista sajt', calorie: 352, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    { name: 'Sertéssonka', calorie: 147, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    { name: 'Teljeskiörlésű kenyér szelet (32g)', calorie: 80, calorieUnit: CalorieUnit.piece, unit: Unit.piece},
+    { name: 'Só', calorie: 0, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    { name: 'Bors (fűszer)', calorie: 251, calorieUnit: CalorieUnit.kcalg , unit: Unit.g},
+    { name: 'Piros paprika (fűszer)', calorie: 282, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    { name: 'Víz', calorie: 0, calorieUnit: CalorieUnit.kcalml, unit: Unit.ml },
   ],
   startingMeals: [
     {
       name: 'Sonkás sajtos szendvics (2db)',
       calorie: 778,
-      Mealtypes: [MealTypes.breakfest, MealTypes.dinner, MealTypes.other],
+      MealType: [MealType.breakfest, MealType.dinner, MealType.other],
       ingredients: [
         {
           name: 'Teljeskiörlésű kenyér szelet (32g)',
@@ -63,7 +63,7 @@ const STARTING_DATA = {
     {
       name: 'Párolt csirkemell rizzsel',
       calorie: 512,
-      Mealtypes: [MealTypes.lunch],
+      MealType: [MealType.lunch],
       ingredients: [
         {
           name: 'Só',
@@ -114,7 +114,7 @@ const STARTING_DATA = {
     {
       name: 'Párolt sertéskaraj sültkrumplival',
       calorie: 596,
-      Mealtypes: [MealTypes.lunch],
+      MealType: [MealType.lunch],
       ingredients: [
         {
           name: 'Só',
@@ -158,7 +158,7 @@ const STARTING_DATA = {
     {
       name: 'Egy pohár joghurt',
       calorie: 114,
-      Mealtypes: [MealTypes.breakfest, MealTypes.other],
+      MealType: [MealType.breakfest, MealType.other],
       ingredients: [
         {
           name: 'Joghurt',
@@ -172,7 +172,7 @@ const STARTING_DATA = {
     {
       name: 'Tojásos rántotta',
       calorie: 556,
-      Mealtypes: [MealTypes.breakfest, MealTypes.dinner],
+      MealType: [MealType.breakfest, MealType.dinner],
       ingredients: [
         {
           name: 'Teljeskiörlésű kenyér szelet (32g)',
@@ -214,7 +214,7 @@ const STARTING_DATA = {
     {
       name: 'Tükör tojás',
       calorie: 553,
-      Mealtypes: [MealTypes.breakfest, MealTypes.dinner],
+      MealType: [MealType.breakfest, MealType.dinner],
       ingredients: [
         {
           name: 'Teljeskiörlésű kenyér szelet (32g)',
@@ -249,7 +249,7 @@ const STARTING_DATA = {
     {
       name: 'Két alma',
       calorie: 156,
-      Mealtypes: [MealTypes.other],
+      MealType: [MealType.other],
       ingredients: [
         {
           name: 'Alma (150g)',
@@ -263,7 +263,7 @@ const STARTING_DATA = {
     {
       name: 'Két körte',
       calorie: 202,
-      Mealtypes: [MealTypes.other],
+      MealType: [MealType.other],
       ingredients: [
         {
           name: 'Körte (közepes)',
