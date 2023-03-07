@@ -9,18 +9,16 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
   const router = useRouter();
 
   return (
-    <UserContextProvider>
-      <SessionProvider session={session}>
-        <>
-          {router.pathname !== '/auth/register' ? (
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          ) : (
+    <SessionProvider session={session}>
+      <UserContextProvider>
+        {router.pathname !== '/auth/register' ? (
+          <Layout>
             <Component {...pageProps} />
-          )}
-        </>
-      </SessionProvider>
-    </UserContextProvider>
+          </Layout>
+        ) : (
+          <Component {...pageProps} />
+        )}
+      </UserContextProvider>
+    </SessionProvider>
   );
 }
