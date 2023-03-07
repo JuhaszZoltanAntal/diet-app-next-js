@@ -4,7 +4,7 @@ import { CalorieUnit, Unit } from './enums';
 export interface IIngredient {
   name: string;
   amount?: number;
-  unit?: Unit;
+  unit: Unit;
   calorie: number;
   calorieUnit: CalorieUnit;
 }
@@ -12,7 +12,7 @@ export interface IIngredient {
 const ingredientSchema = new Schema<IIngredient>({
   name: { type: String, required: true, unique: true },
   amount: { type: Number },
-  unit: { type: Schema.Types.Mixed, default: Unit.g },
+  unit: { type: Schema.Types.Mixed, default: Unit.g, required: true },
   calorie: { type: Number, required: true },
   calorieUnit: { type: Schema.Types.Mixed, required: true, default: CalorieUnit.kcalg },
 });
