@@ -28,7 +28,12 @@ let handler: NextApiHandler<any> = async (req, res) => {
         newUser: { name: newUser.name, email: newUser.email },
       });
     } else {
-      res.status(500).send({ message: 'This email already occupied! (Maybe you are using it with google authentication.)' });
+      res
+        .status(500)
+        .send({
+          message:
+            'This email already occupied! (Maybe you are using it with google authentication.)',
+        });
     }
   }
 };
