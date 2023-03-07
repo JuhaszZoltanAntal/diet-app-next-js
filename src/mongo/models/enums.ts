@@ -14,7 +14,7 @@ export enum CalorieUnit {
   piece = 'piece',
 }
 
-export enum MealTypes {
+export enum MealType {
   breakfest = 'breakfast',
   lunch = 'lunch',
   dinner = 'dinner',

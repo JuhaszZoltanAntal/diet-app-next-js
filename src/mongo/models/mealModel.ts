@@ -1,11 +1,11 @@
 import { model, Schema, models } from 'mongoose';
-import { MealTypes } from './enums';
+import { MealType } from './enums';
 import { IIngredient } from './ingredientModel';
 
 export interface IMeal {
   name: string;
   calorie: number;
-  mealtypes: MealTypes[];
+  mealtypes: MealType[];
   ingredients: IIngredient[];
 }
 

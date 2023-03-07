@@ -1,9 +1,9 @@
 import { model, Schema, models } from 'mongoose';
-import { IMeals } from './mealModel';
+import { IMeal } from './mealModel';
 
 export interface IDailyMeals {
   numberOftheMealsPerDay: number;
-  mealsList: IMeals[];
+  mealsList: IMeal[];
 }
 
 const dailyMealsSchema = new Schema<IDailyMeals>({
