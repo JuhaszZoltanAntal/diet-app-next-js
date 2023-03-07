@@ -9,7 +9,9 @@ export default function NavBar({ userName }: { userName: string }) {
         <p>Welcome, {userName}</p>
         <button
           onClick={() => {
-            signOut();
+            signOut({
+              callbackUrl: '/'
+            });
           }}
         >
           Sign out
