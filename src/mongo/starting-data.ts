@@ -28,7 +28,7 @@ const STARTING_DATA = {
     {
       name: 'Sonkás sajtos szendvics (2db)',
       calorie: 778,
-      MealType: [MealType.breakfest, MealType.dinner, MealType.other],
+      mealtypes: [MealType.breakfest, MealType.dinner, MealType.other],
       ingredients: [
         {
           name: 'Teljeskiörlésű kenyér szelet (32g)',
@@ -63,7 +63,7 @@ const STARTING_DATA = {
     {
       name: 'Párolt csirkemell rizzsel',
       calorie: 512,
-      MealType: [MealType.lunch],
+      mealtypes: [MealType.lunch],
       ingredients: [
         {
           name: 'Só',
@@ -114,7 +114,7 @@ const STARTING_DATA = {
     {
       name: 'Párolt sertéskaraj sültkrumplival',
       calorie: 596,
-      MealType: [MealType.lunch],
+      mealtypes: [MealType.lunch],
       ingredients: [
         {
           name: 'Só',
@@ -158,7 +158,7 @@ const STARTING_DATA = {
     {
       name: 'Egy pohár joghurt',
       calorie: 114,
-      MealType: [MealType.breakfest, MealType.other],
+      mealtypes: [MealType.breakfest, MealType.other],
       ingredients: [
         {
           name: 'Joghurt',
@@ -172,7 +172,7 @@ const STARTING_DATA = {
     {
       name: 'Tojásos rántotta',
       calorie: 556,
-      MealType: [MealType.breakfest, MealType.dinner],
+      mealtypes: [MealType.breakfest, MealType.dinner],
       ingredients: [
         {
           name: 'Teljeskiörlésű kenyér szelet (32g)',
@@ -214,7 +214,7 @@ const STARTING_DATA = {
     {
       name: 'Tükör tojás',
       calorie: 553,
-      MealType: [MealType.breakfest, MealType.dinner],
+      mealtypes: [MealType.breakfest, MealType.dinner],
       ingredients: [
         {
           name: 'Teljeskiörlésű kenyér szelet (32g)',
@@ -249,7 +249,7 @@ const STARTING_DATA = {
     {
       name: 'Két alma',
       calorie: 156,
-      MealType: [MealType.other],
+      mealtypes: [MealType.other],
       ingredients: [
         {
           name: 'Alma (150g)',
@@ -263,7 +263,7 @@ const STARTING_DATA = {
     {
       name: 'Két körte',
       calorie: 202,
-      MealType: [MealType.other],
+      mealtypes: [MealType.other],
       ingredients: [
         {
           name: 'Körte (közepes)',
