@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import UserContext from '@/store/user-context';
 
 export default function Ingredients() {
-  const {ingredients} = useContext(UserContext);
+  const { ingredients } = useContext(UserContext);
 
   return (
     <ul>
