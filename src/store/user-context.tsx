@@ -38,14 +38,6 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
   const [ingredients, setIngredients] = useState<IIngredient[]>([]);
 
   function addMealHandler(newMeal: IMeal) {
-    setMeals((preveousMeals) => {
-      if (preveousMeals) {
-        return [...preveousMeals, newMeal];
-      } else {
-        return [];
-      }
-    });
-
     axios
       .post(
         '/api/meal/' + session?.user.id,
@@ -60,6 +52,13 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
       )
       .then(function (response) {
         console.log(response);
+        setMeals((preveousMeals) => {
+          if (preveousMeals) {
+            return [...preveousMeals, newMeal];
+          } else {
+            return [];
+          }
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -67,14 +66,6 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
   }
 
   function addIngredientHandler(newIngredient: IIngredient) {
-    setIngredients((preveousIngredients) => {
-      if (preveousIngredients) {
-        return [...preveousIngredients, newIngredient];
-      } else {
-        return [];
-      }
-    });
-
     axios
       .post(
         '/api/ingredient/' + session?.user.id,
@@ -89,6 +80,13 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
       )
       .then(function (response) {
         console.log(response);
+        setIngredients((preveousIngredients) => {
+          if (preveousIngredients) {
+            return [...preveousIngredients, newIngredient];
+          } else {
+            return [];
+          }
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -114,8 +112,11 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
       )
       .then(function (response) {
         console.log(response);
-        //todo push the generated diet here
-        setDiets([]);
+        setDiets((prevDiets) => {
+          let newDiet = prevDiets;
+          newDiet.push(response.data.newDiet);
+          return newDiet;
+        });
       })
       .catch(function (error) {
         console.log(error);
