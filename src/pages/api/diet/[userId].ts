@@ -16,13 +16,9 @@ let handler: NextApiHandler<any> = async (req, res) => {
       mealsPerDay: req.body.mealsPerDay,
     };
 
-    console.log('data arrived: ' + JSON.stringify(data));
-
     const getRandomElement = (arr: any[]) => arr[Math.floor(Math.random() * arr.length)];
 
     const generateDailyMealsList = (mealsPerDay: number, user: IUser): IDailyMeals[] => {
-
-      console.log('user' + JSON.stringify(user.meals))
 
       let dailyMelasList: IDailyMeals[] = [];
 
@@ -53,7 +49,7 @@ let handler: NextApiHandler<any> = async (req, res) => {
           break;
       }
 
-      for (let index = 0; index < 6; index++) {
+      for (let index = 0; index < 7; index++) {
         let mealsList: IMeal[] = [];
 
         for (let index = 0; index < mealsPerDay - 1; index++) {

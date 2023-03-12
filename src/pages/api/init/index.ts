@@ -31,7 +31,6 @@ let handler: NextApiHandler<any> = async (req, res) => {
       meals: { $exists: true },
       ingredients: { $exists: true },
     });
-    console.log(isInitiated)
 
     if (userId && startingIngredients && startingMeals && !isInitiated) {
       const filter = { id: userId };
