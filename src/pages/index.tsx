@@ -8,8 +8,9 @@ export default function Home() {
   return diets && diets.length > 0 ? (
     <ul>
       {diets.map((diet) => (
-        <li key={diet.name}><b>{diet.name}</b>
-        <p>{JSON.stringify(diet)}</p>
+        <li key={diet.name}>
+          <b>{diet.name}</b>
+          <p>{JSON.stringify(diet)}</p>
         </li>
       ))}
     </ul>
