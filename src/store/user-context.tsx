@@ -10,6 +10,7 @@ type UserContexType = {
   diets: IDiet[];
   meals: IMeal[];
   ingredients: IIngredient[];
+  shoppingList: IIngredient[];
   addMeal: (newMeal: IMeal) => void;
   addIngredient: (newIngredient: IIngredient) => void;
   generateDiet: (data: {
@@ -17,15 +18,18 @@ type UserContexType = {
     expectedCaloriesPerDay: number;
     mealsPerDay: number;
   }) => void;
+  setShoppingList: (checkboxValues: boolean[]) => void;
 };
 
 const defaultState = {
   diets: [],
   meals: [],
   ingredients: [],
+  shoppingList: [],
   addMeal: (newMeal: IMeal) => {},
   addIngredient: (newIngredient: IIngredient) => {},
   generateDiet: (data: { name: string; expectedCaloriesPerDay: number; mealsPerDay: number }) => {},
+  setShoppingList: (checkboxValues: boolean[]) => {},
 };
 
 const UserContext = createContext<UserContexType>(defaultState);
@@ -36,6 +40,7 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
   const [diets, setDiets] = useState<IDiet[]>([]);
   const [meals, setMeals] = useState<IMeal[]>([]);
   const [ingredients, setIngredients] = useState<IIngredient[]>([]);
+  const [shoppingList, setShoppingList] = useState<IIngredient[]>([]);
 
   function addMealHandler(newMeal: IMeal) {
     axios
@@ -113,7 +118,7 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
       .then(function (response) {
         console.log(response);
         setDiets((prevDiets) => {
-          let newDiet = prevDiets;
+          let newDiet = prevDiets || [];
           newDiet.push(response.data.newDiet);
           return newDiet;
         });
@@ -123,14 +128,28 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
       });
   }
 
-  const context = {
-    diets: diets,
-    meals: meals,
-    ingredients: ingredients,
-    addMeal: addMealHandler,
-    addIngredient: addIngredientHandler,
-    generateDiet: generateDietHandler,
-  };
+
+  function setShoppingListHandler(checkboxValues: boolean[]) {
+    axios
+    .post(
+      '/api/shopping-list/' + session?.user.id,
+      {
+        checkboxValues: checkboxValues
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    .then(function (response) {
+      console.log(response);
+      setShoppingList(response.data.newShoppingList);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
   useEffect(() => {
     if (session) {
@@ -193,6 +212,17 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
       })();
     }
   }, [session]);
+
+  const context = {
+    diets: diets,
+    meals: meals,
+    ingredients: ingredients,
+    shoppingList: shoppingList,
+    addMeal: addMealHandler,
+    addIngredient: addIngredientHandler,
+    generateDiet: generateDietHandler,
+    setShoppingList: setShoppingListHandler,
+  };
 
   return <UserContext.Provider value={context}>{children}</UserContext.Provider>;
 }
