@@ -3,13 +3,14 @@ import UserContext from '@/store/user-context';
 import router from 'next/router';
 
 export default function Home() {
-  const { diets } = useContext(UserContext);
+  const { diets, deleteDiet } = useContext(UserContext);
 
   return diets && diets.length > 0 ? (
     <ul>
       {diets.map((diet) => (
         <li key={diet.name}>
           <b>{diet.name}</b>
+          <button onClick={()=>deleteDiet(diet.name)}>Delete</button>
           <p>{JSON.stringify(diet)}</p>
         </li>
       ))}

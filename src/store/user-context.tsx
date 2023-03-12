@@ -19,6 +19,9 @@ type UserContexType = {
     mealsPerDay: number;
   }) => void;
   setShoppingList: (checkboxValues: boolean[]) => void;
+  deleteIngredient: (ingredientName: string) => void;
+  deleteMeal: (mealName: string) => void;
+  deleteDiet: (dietName: string) => void;
 };
 
 const defaultState = {
@@ -30,6 +33,9 @@ const defaultState = {
   addIngredient: (newIngredient: IIngredient) => {},
   generateDiet: (data: { name: string; expectedCaloriesPerDay: number; mealsPerDay: number }) => {},
   setShoppingList: (checkboxValues: boolean[]) => {},
+  deleteIngredient: (ingredientName: string) => {},
+  deleteMeal: (mealName: string) => {},
+  deleteDiet: (dietName: string) => {}
 };
 
 const UserContext = createContext<UserContexType>(defaultState);
@@ -128,28 +134,72 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
       });
   }
 
-
   function setShoppingListHandler(checkboxValues: boolean[]) {
     axios
-    .post(
-      '/api/shopping-list/' + session?.user.id,
-      {
-        checkboxValues: checkboxValues
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
+      .post(
+        '/api/shopping-list/' + session?.user.id,
+        {
+          checkboxValues: checkboxValues,
         },
-      }
-    )
-    .then(function (response) {
-      console.log(response);
-      setShoppingList(response.data.newShoppingList);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+        setShoppingList(response.data.newShoppingList);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
+
+  function deleteIngredientHandler(ingredientName: string) {
+    axios
+      .delete('/api/ingredient/' + ingredientName + '/' + session?.user.id)
+      .then(function (response) {
+        console.log(response);
+        setIngredients((prevIngredients) => {
+          const newIngredient = prevIngredients.filter((i) => i.name !== ingredientName);
+          return [...newIngredient];
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+function deleteMealHandler(mealName:string) {
+  axios
+      .delete('/api/meal/' + mealName + '/' + session?.user.id)
+      .then(function (response) {
+        console.log(response);
+        setMeals((prevMeals) => {
+          const newMeals = prevMeals.filter((m) => m.name !== mealName);
+          return [...newMeals];
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+}
+
+function deleteDietHandler(dietName:string) {
+  axios
+  .delete('/api/diet/' + dietName + '/' + session?.user.id)
+  .then(function (response) {
+    console.log(response);
+    setDiets((prevDiets) => {
+      const newDiets = prevDiets.filter((d) => d.name !== dietName);
+      return [...newDiets];
+    });
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
 
   useEffect(() => {
     if (session) {
@@ -222,6 +272,9 @@ export function UserContextProvider({ children }: { children: React.ReactNode })
     addIngredient: addIngredientHandler,
     generateDiet: generateDietHandler,
     setShoppingList: setShoppingListHandler,
+    deleteIngredient: deleteIngredientHandler,
+    deleteMeal: deleteMealHandler,
+    deleteDiet: deleteDietHandler,
   };
 
   return <UserContext.Provider value={context}>{children}</UserContext.Provider>;
