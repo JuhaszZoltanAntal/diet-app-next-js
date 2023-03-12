@@ -2,7 +2,18 @@ import type { NextApiHandler } from 'next';
 import { conncetMongo } from '@/mongo/connect';
 import User from '@/mongo/models/userModel';
 
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../auth/[...nextauth]';
+
 let handler: NextApiHandler<any> = async (req, res) => {
+  const session = await getServerSession(req, res, authOptions);
+  if (!session) {
+    res.status(401).send({
+      message: 'You must be logged in.',
+    });
+    return;
+  }
+
   await conncetMongo();
 
   if (req.method === 'POST') {

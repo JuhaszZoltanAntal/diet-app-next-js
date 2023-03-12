@@ -7,7 +7,18 @@ import { IDiet } from '@/mongo/models/dietModel';
 import { IMeal } from '@/mongo/models/mealModel';
 import { IDailyMeals } from '@/mongo/models/dailyMealsModel';
 
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../auth/[...nextauth]';
+
 let handler: NextApiHandler<any> = async (req, res) => {
+  const session = await getServerSession(req, res, authOptions);
+  if (!session) {
+    res.status(401).send({
+      message: 'You must be logged in.',
+    });
+    return;
+  }
+  
   await conncetMongo();
 
   if (req.method === 'POST') {

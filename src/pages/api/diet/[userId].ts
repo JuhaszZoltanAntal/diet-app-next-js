@@ -6,7 +6,18 @@ import { IDailyMeals } from '@/mongo/models/dailyMealsModel';
 import { MealType } from '@/mongo/models/enums';
 import { IMeal } from '@/mongo/models/mealModel';
 
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../auth/[...nextauth]';
+
 let handler: NextApiHandler<any> = async (req, res) => {
+  const session = await getServerSession(req, res, authOptions);
+  if (!session) {
+    res.status(401).send({
+      message: 'You must be logged in.',
+    });
+    return;
+  }
+
   await conncetMongo();
 
   if (req.method === 'POST') {
@@ -19,7 +30,6 @@ let handler: NextApiHandler<any> = async (req, res) => {
     const getRandomElement = (arr: any[]) => arr[Math.floor(Math.random() * arr.length)];
 
     const generateDailyMealsList = (mealsPerDay: number, user: IUser): IDailyMeals[] => {
-
       let dailyMelasList: IDailyMeals[] = [];
 
       const breakfasts: IMeal[] = user!.meals!.filter((m: IMeal) =>
