@@ -11,6 +11,7 @@ export interface IUser {
   diets?: IDiet[];
   meals?: IMeal[];
   ingredients?: IIngredient[];
+  shoppingList?: IIngredient[];
 }
 
 const userSchema = new Schema<IUser>({
@@ -21,6 +22,7 @@ const userSchema = new Schema<IUser>({
   diets: { type: Schema.Types.Mixed },
   meals: { type: Schema.Types.Mixed },
   ingredients: { type: Schema.Types.Mixed },
+  shoppingList: { type: Schema.Types.Mixed },
 });
 
 const User = models.User || model<IUser>('User', userSchema);
