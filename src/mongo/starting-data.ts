@@ -1,14 +1,21 @@
 import { CalorieUnit, MealType, Unit } from './models/enums';
+import { IIngredient } from './models/ingredientModel';
+import { IMeal } from './models/mealModel';
 
-const STARTING_DATA = {
+const STARTING_DATA: { startingIngredients: IIngredient[]; startingMeals: IMeal[] } = {
   startingIngredients: [
     { name: 'Tyúktojás (M)', calorie: 76, calorieUnit: CalorieUnit.piece, unit: Unit.piece },
     { name: 'Burgonya', calorie: 77, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
     { name: 'Basmati rizs (száraz)', calorie: 360, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
     { name: 'Csirkemell', calorie: 120, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
-    { name: 'Sertéskaraj (hosszú karaj)', calorie: 155, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
+    {
+      name: 'Sertéskaraj (hosszú karaj)',
+      calorie: 155,
+      calorieUnit: CalorieUnit.kcalg,
+      unit: Unit.g,
+    },
     { name: 'SPAR UHT tej 2,8%-os', calorie: 56, calorieUnit: CalorieUnit.kcalml, unit: Unit.ml },
-    { name: 'Durumtészta (száraz)', calorie: 360, calorieUnit: CalorieUnit.kcalg , unit: Unit.g},
+    { name: 'Durumtészta (száraz)', calorie: 360, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
     { name: 'Olívaolaj', calorie: 813, calorieUnit: CalorieUnit.kcalml, unit: Unit.ml },
     { name: 'Paradicsom (közepes)', calorie: 22, calorieUnit: CalorieUnit.piece, unit: Unit.piece },
     { name: 'Alma (150g)', calorie: 78, calorieUnit: CalorieUnit.piece, unit: Unit.piece },
@@ -18,9 +25,14 @@ const STARTING_DATA = {
     { name: 'Vaj', calorie: 742, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
     { name: 'Trappista sajt', calorie: 352, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
     { name: 'Sertéssonka', calorie: 147, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
-    { name: 'Teljeskiörlésű kenyér szelet (32g)', calorie: 80, calorieUnit: CalorieUnit.piece, unit: Unit.piece},
+    {
+      name: 'Teljeskiörlésű kenyér szelet (32g)',
+      calorie: 80,
+      calorieUnit: CalorieUnit.piece,
+      unit: Unit.piece,
+    },
     { name: 'Só', calorie: 0, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
-    { name: 'Bors (fűszer)', calorie: 251, calorieUnit: CalorieUnit.kcalg , unit: Unit.g},
+    { name: 'Bors (fűszer)', calorie: 251, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
     { name: 'Piros paprika (fűszer)', calorie: 282, calorieUnit: CalorieUnit.kcalg, unit: Unit.g },
     { name: 'Víz', calorie: 0, calorieUnit: CalorieUnit.kcalml, unit: Unit.ml },
   ],
@@ -93,7 +105,6 @@ const STARTING_DATA = {
           calorie: 89,
           calorieUnit: CalorieUnit.kcalml,
         },
-        ,
         {
           name: 'Basmati rizs (száraz)',
           amount: 5,
@@ -101,7 +112,6 @@ const STARTING_DATA = {
           calorie: 180,
           calorieUnit: CalorieUnit.kcalg,
         },
-        ,
         {
           name: 'Víz',
           amount: 1,
@@ -137,7 +147,6 @@ const STARTING_DATA = {
           calorie: 89,
           calorieUnit: CalorieUnit.kcalml,
         },
-        ,
         {
           name: 'Burgonya',
           amount: 20,
@@ -145,7 +154,6 @@ const STARTING_DATA = {
           calorie: 174,
           calorieUnit: CalorieUnit.kcalg,
         },
-        ,
         {
           name: 'Lilahagyma (közepes)',
           amount: 0.5,
